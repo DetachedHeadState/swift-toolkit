@@ -21,8 +21,8 @@ public protocol PreferencesEditor: AnyObject {
 
 /// This base class can be used to build a mutable `PreferencesEditor` with
 /// a more declarative API.
-public class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Settings: ConfigurableSettings>: PreferencesEditor {
-    struct State {
+open class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Settings: ConfigurableSettings>: PreferencesEditor {
+    public struct State {
         var preferences: Preferences
         var settings: Settings
     }
@@ -30,7 +30,7 @@ public class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Set
     private var state: State
     private let makeSettings: (Preferences) -> Settings
 
-    init(initialPreferences: Preferences, settings: @escaping (Preferences) -> Settings) {
+    public init(initialPreferences: Preferences, settings: @escaping (Preferences) -> Settings) {
         makeSettings = settings
         state = State(
             preferences: initialPreferences,
@@ -52,7 +52,7 @@ public class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Set
         self.state = state
     }
 
-    func preference<Value>(
+    public func preference<Value>(
         preference prefKP: WritableKeyPath<Preferences, Value?>,
         setting settingKP: KeyPath<Settings, Value>,
         defaultEffectiveValue: Value,
