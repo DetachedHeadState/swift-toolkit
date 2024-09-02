@@ -23,8 +23,8 @@ public protocol PreferencesEditor: AnyObject {
 /// a more declarative API.
 open class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Settings: ConfigurableSettings>: PreferencesEditor {
     public struct State {
-        var preferences: Preferences
-        var settings: Settings
+        public var preferences: Preferences
+        public var settings: Settings
     }
 
     private var state: State
@@ -66,7 +66,7 @@ open class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Setti
         )
     }
 
-    func preference<Value>(
+    public func preference<Value>(
         preference prefKP: WritableKeyPath<Preferences, Value?>,
         effectiveValue: @escaping (State) -> Value?,
         defaultEffectiveValue: Value,
