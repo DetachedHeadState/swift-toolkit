@@ -124,7 +124,7 @@ open class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Setti
         ).eraseToAnyPreference()
     }
 
-    func enumPreference<Value>(
+    public func enumPreference<Value>(
         preference prefKP: WritableKeyPath<Preferences, Value?>,
         setting settingKP: KeyPath<Settings, Value>,
         defaultEffectiveValue: Value,
@@ -140,7 +140,7 @@ open class StatefulPreferencesEditor<Preferences: ConfigurablePreferences, Setti
         )
     }
 
-    func enumPreference<Value>(
+    public func enumPreference<Value>(
         preference prefKP: WritableKeyPath<Preferences, Value?>,
         effectiveValue: @escaping (State) -> Value?,
         defaultEffectiveValue: Value,
