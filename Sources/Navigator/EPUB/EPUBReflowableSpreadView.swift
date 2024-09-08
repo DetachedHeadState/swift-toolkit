@@ -224,7 +224,14 @@ final class EPUBReflowableSpreadView: EPUBSpreadView {
             return false
         }
 
-        scrollView.setContentOffset(newOffset, animated: animated)
+        if animated {
+            UIView.animate(withDuration: 0.15, animations: {
+                self.scrollView.setContentOffset(newOffset, animated: false)
+            })
+        } else {
+            self.scrollView.setContentOffset(newOffset, animated: false)
+        }
+//        scrollView.setContentOffset(newOffset, animated: animated)
 
         // This delay is only used when turning pages in a single resource if the page turn is animated. The delay is roughly the length of the animation.
         // FIXME: completion should be implemented using scroll view delegates
